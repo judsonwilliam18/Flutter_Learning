@@ -6,6 +6,7 @@ class CoinFlip extends StatelessWidget {
 Random coinside=new Random();
    @override
   Widget build(BuildContext context) {
+    //elmegelg;,e,g
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
