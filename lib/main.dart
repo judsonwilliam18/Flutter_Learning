@@ -13,7 +13,7 @@ class MyApp extends   StatelessWidget {
             Expanded(
             //  oljuojoijj//
               child:Row(
-                //image;
+                
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -23,7 +23,7 @@ class MyApp extends   StatelessWidget {
               ) ),
               Expanded(
                 child:Row(
-                  //text;
+                  
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -33,7 +33,7 @@ class MyApp extends   StatelessWidget {
                 ) ),
                 Expanded(
                   child:Row(
-                    //text;
+                    
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -42,7 +42,7 @@ class MyApp extends   StatelessWidget {
                   ) ),
                   Expanded(
                     child: Row(
-                      //text;
+                      
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -51,7 +51,7 @@ class MyApp extends   StatelessWidget {
                     )),
                     Expanded(
                       child:Row(
-                        //button;
+                        
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
 
@@ -63,7 +63,7 @@ class MyApp extends   StatelessWidget {
                       ) ),
                       Expanded(
                         child:Row(
-                          //text;
+                          
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(onPressed: (){
@@ -73,7 +73,7 @@ class MyApp extends   StatelessWidget {
                         ) ),
                         Expanded(
                           child:Row(
-                            //text;
+                            
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("or continue with")
@@ -81,7 +81,7 @@ class MyApp extends   StatelessWidget {
                           ) ),
                           Expanded(
                             child:Row(
-                              //image;
+                              
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               
@@ -92,7 +92,7 @@ class MyApp extends   StatelessWidget {
                             ) ),
                             Expanded(
                               child:Row(
-                                //text;
+                                
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
