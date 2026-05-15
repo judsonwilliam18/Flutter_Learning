@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,60 +6,104 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+
   // JSON String
   final String jsonString = '''
-  { 
-    "ust global employee": [ 
-      {
-        "name": "judson",
-        "Age": 24,
-        "Salary": 24000
-      },
-      {
-        "name": "David",
-        "Age": 25,
-        "Salary": 27000
-      }
-    ]
-  }
+{
+  "ust global employee": [
+    {
+      "name": "judson",
+      "Age": 24,
+      "Salary": 24000
+    },
+    {
+      "name": "David",
+      "Age": 25,
+      "Salary": 27000
+    }
+  ]
+}
   ''';
-  
 
   @override
   Widget build(BuildContext context) {
-    // Convert JSON string to Map
-    final data = jsonDecode(jsonString);
-    final encodedata = jsonEncode(jsonString);
-    final decodeddata = jsonDecode(jsonString);
 
+    // Decode JSON
+    Map<String, dynamic> data = jsonDecode(jsonString);
 
-    debugPrint("encodedata: ====${encodedata}");
-    debugPrint("decodedata: ====${decodeddata}");
-
-
-    // Get employee list
+    // Employee List
     List employees = data["ust global employee"];
+
+    // Company List
+    List companies = data["ust global company"] ??[];
 
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Employee Data"),
+          title: Text("JSON Display"),
         ),
-        body: ListView.builder(
-          itemCount: employees.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                title: Text(
-                  employees[index]["name"],
+
+        body: Padding(
+          padding: EdgeInsets.all(12),
+
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                Text(
+                  "Employees",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                subtitle: Text(
-                  "Age: ${employees[index]["Age"]}\n"
-                  "Salary: ${employees[index]["Salary"]}",
+
+                SizedBox(height: 10),
+
+                // Employee Data
+                for (var emp in employees)
+                  Card(
+                    
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Name : ${emp['name']}"),
+                          Text("Age : ${emp['Age']}"),
+                          Text("Salary : ${emp['Salary']}"),
+                        ],
+                      ),
+                    
+                  ),
+
+                
+
+                Text(
+                  "Companies",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            );
-          },
+
+              
+
+                // Company Data
+                for (var company in companies)
+                  Card(
+                    
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Country : ${company['country']}"),
+                          Text("Employees : ${company['employees']}"),
+                        ],
+                      ),
+                    
+                  ),
+              ],
+            ),
+          ),
         ),
       ),
     );
