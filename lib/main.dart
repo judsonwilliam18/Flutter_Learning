@@ -1,76 +1,104 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-
-void main()=>runApp(localstorage());
-class localstorage extends  StatefulWidget {
-  const localstorage({super.key});
+void main()=>runApp(MyApp());
+class MyApp extends  StatefulWidget {
+  const MyApp({super.key});
 
   @override
-  State<localstorage> createState() => _localstorageState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _localstorageState extends State<localstorage> {
-   String localstorage='flutter';
+class _MyAppState extends State<MyApp> {
+    String data = 'No data';
+    TextEditingController controller=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: Text("Localstorage"),
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            
+            appBar: AppBar(
+                
+                backgroundColor: Colors.blue,
+                title: Text("Storage"),
+            ),
+            body: Column(
+                children: <Widget>[
+                     TextField(
+                                controller: controller,
+                                decoration: InputDecoration(
+                                    labelText: "Enter Text"
+
+                                ),
+                            ),
+                            ElevatedButton(onPressed: (){
+                                WriteData();
+                            }, 
+                            child: const Text("Write data"),
+                            ),
+                            ElevatedButton(onPressed: (){
+                                ReadData();
+                            }, child: const Text('ReadData')
+                            ),
+                            ElevatedButton(onPressed: (){
+                                UpdateData();
+                            }, child: const Text('UpdateData')
+                            ),
+                            ElevatedButton(onPressed: (){
+                                DeleteData();
+                            }, child: const Text('DeleteData')
+                            ),
+                            Text(
+                                data,
+                                style: TextStyle(
+                                    fontSize: 30.0,
+                                    color: Colors.black26
+                                ),
+                            )
+                        
+                    
+                    
+                    
+                ],
+                
+            ),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(" $localstorage"),
-            ElevatedButton(onPressed: (){
-              writedata();
-              print('success');
-            },
-             child: const Text("write data")),
-             ElevatedButton(onPressed: (){
-              readdata();
-             }, child: const Text("Read data")),
-              ElevatedButton(onPressed: (){
-                updatedata();
-              }, child: const Text("update data")),
-               ElevatedButton(onPressed: (){
-                deletedata();
-               }, child: const Text("delete data"))
-
-
-
-          ],
-        ),
-
-      ),
     );
   }
-  void writedata()async{
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('name', 'logo tech');
-
-
+  void WriteData() async{
+    final SharedPreferences prefs=await SharedPreferences.getInstance();
+    await prefs.setString('name', controller.text);
+    print("Data written");
   }
-  void readdata()async{
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+  void ReadData() async{
+    final SharedPreferences prefs=await SharedPreferences.getInstance();
     final String? action = prefs.getString('name');
     setState(() {
-      localstorage=action!;
+      data=action?? 'No Data';
     });
   }
-  void updatedata()async{
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('name', 'logo info tech');
+  void UpdateData() async{
+    final SharedPreferences prefs=await SharedPreferences.getInstance();
+    await prefs.setString('name', controller.text);
+    print("Data Updated");
   }
-  void deletedata()async{
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+  void DeleteData()async{
+    final SharedPreferences prefs=await SharedPreferences.getInstance();
     await prefs.remove('name');
     setState(() {
-      localstorage='flutter';
+      data='No Data';
     });
-
+    controller.clear();
+    print(" Data deleted");
+        
+    
   }
+  
+
+
+
+
+
+
+
 }
